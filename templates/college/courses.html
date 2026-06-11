@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Courses - Smart Attendance{% endblock %}
+{% block navbar_title %}All Courses{% endblock %}
+
+{% block content %}
+<div class="page-title">Courses</div>
+
+<a href="/college/add-course" class="btn btn-primary mb-4"><i class="fas fa-plus"></i> Add New Course</a>
+
+{% if courses %}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td><strong>{{ course.name }}</strong></td>
+                <td>{{ course.created_at.strftime('%d-%m-%Y') }}</td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle"></i> No courses created yet. <a href="/college/add-course">Create your first course</a>
+</div>
+{% endif %}
+{% endblock %}

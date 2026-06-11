@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Students - Smart Attendance{% endblock %}
+{% block navbar_title %}All Students{% endblock %}
+
+{% block content %}
+<div class="page-title">Students</div>
+
+<a href="/school/add-student" class="btn btn-primary mb-4"><i class="fas fa-user-plus"></i> Add New Student</a>
+
+{% if students %}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td><strong>{{ student.roll_number }}</strong></td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.class_.name }}</td>
+                <td>{{ student.phone }}</td>
+                <td>
+                    <a href="/school/delete-student/{{ student.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this student? All attendance and face data for this student will be deleted.');" title="Delete Student">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle"></i> No students added yet. <a href="/school/add-student">Add your first student</a>
+</div>
+{% endif %}
+{% endblock %}

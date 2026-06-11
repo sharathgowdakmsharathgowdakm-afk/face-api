@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Subjects - Smart Attendance{% endblock %}
+{% block navbar_title %}All Subjects{% endblock %}
+
+{% block content %}
+<div class="page-title">Subjects</div>
+
+<a href="/college/add-subject" class="btn btn-primary mb-4"><i class="fas fa-plus"></i> Add New Subject</a>
+
+{% if subjects %}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+                <th>Course</th>
+                <th>Semester</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td><strong>{{ subject.name }}</strong></td>
+                <td>{{ subject.course.name }}</td>
+                <td>{{ subject.semester if subject.semester else 'N/A' }}</td>
+                <td>
+                    <a href="/college/delete-subject/{{ subject.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this subject? All attendance data for this subject will be deleted.');" title="Delete Subject">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle"></i> No subjects created yet. <a href="/college/add-subject">Add your first subject</a>
+</div>
+{% endif %}
+{% endblock %}
