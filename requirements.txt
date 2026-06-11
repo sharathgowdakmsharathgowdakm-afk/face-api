@@ -1,13 +1,9 @@
 Flask==3.0.2
 Flask-SQLAlchemy==3.1.1
-Werkzeug==3.0.1
-numpy==1.26.4
 opencv-python-headless==4.9.0.80
-cmake
-dlib
-face-recognition
-reportlab==4.1.0
 gunicorn==21.2.0
+numpy==1.26.4
+reportlab==4.1.0
 python-dotenv==1.0.0
 Flask-WTF==1.2.1
 Flask-Talisman==1.1.0
